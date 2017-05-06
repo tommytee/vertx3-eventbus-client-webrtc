@@ -46,7 +46,7 @@ the happyChat dir contained within examples.
 
 then from happyChat dir run ( default port 8090 )
     
-    npm run latest
+    npm start
 
 atm you can add #nowebrtc to url to disable WebRTC in browser
 
