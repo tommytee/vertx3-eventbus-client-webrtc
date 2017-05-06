@@ -1,0 +1,19 @@
+{
+  "name": "HappyChat",
+  "version": "0.0.1",
+  "description": "chat app for testing",
+  "dependencies": {
+    "vertx3-full": "3.3.3",
+    "vertx3-eventbus-webrtc-helper": "tommytee/vertx3-eventbus-webrtc-helper",
+    "draggabilly": "^2.1.1"
+  },
+  "devDependencies": {
+    "browserify": "^14.3.0",
+    "watchify": "^3.9.0"
+  },
+  "scripts": {
+    "start": "./node_modules/.bin/vertx run server.js",
+    "watch": "watchify src/main.js -v -o webroot/bundle.js",
+    "build": "browserify src/main.js -o webroot/bundle.js"
+  }
+}

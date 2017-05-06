@@ -1,0 +1,24 @@
+{
+  "name": "vertx3-eventbus-client-webrtc",
+  "version": "0.0.1",
+  "authors": "",
+  "description": "Vert.x Event Bus Client with RTCDataChannel for vert.x 3.3.3",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "tommytee/vertx3-eventbus-client-webrtc.git"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "extend.js": "0.0.2",
+    "simple-peer": "^8.1.0"
+  },
+  "devDependencies": {
+    "browserify": "^14.3.0",
+    "watchify": "^3.9.0"
+  },
+  "scripts": {
+    "build": "browserify --standalone EventBus ./src/main | derequire | uglifyjs -c > ./index.js",
+    "build-unmin": "browserify --standalone EventBus ./src/main | derequire  > ./index.js"
+  }
+}

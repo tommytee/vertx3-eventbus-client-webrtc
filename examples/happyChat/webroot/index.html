@@ -1,0 +1,44 @@
+<html>
+<head>
+  <title>Happy Chat</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="//cdn.jsdelivr.net/sockjs/0.3.4/sockjs.min.js"></script>
+  <script src="bundle.js"></script>
+
+</head>
+<body>
+
+  <div id="enter-room-mask">
+
+    <div id="username-box">
+      <span id="username-label">username:</span>
+      <span id="username-span"></span>
+    </div>
+
+    <div id="change-box">
+      <span id="change-username"> change name </span>
+      <span id="change-color"> change color </span>
+    </div>
+
+    <label for="input-room">room name:</label>
+    <input id="input-room" type="text">
+
+    <div id="default-rooms-area"></div>
+
+  </div>
+
+  <div id="name-box"></div>
+
+  <div id="main-room">
+    <div id="main-room-title" class="room-title"></div>
+    <div id="main-text"></div>
+    <input id="main-input" type="text">
+  </div>
+
+</body>
+</html>

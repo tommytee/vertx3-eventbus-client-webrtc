@@ -1,0 +1,169 @@
+body {
+    font-family: sans-serif;
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+    background-color: #bbb;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow: hidden;
+}
+
+#enter-room-mask {
+    position:absolute;
+    width:100%;
+    height: 100%;
+    text-align: center;
+    background-color: rgb(54,54,54);
+    color: #fff;
+    z-index: 999999;
+}
+
+#name-box {
+    padding: 8px;
+}
+#username-box {
+    margin: 29vh auto 3vh;
+    line-height: 30px;
+}
+#username-label {
+    width: 50vw;
+    text-align: right;
+}
+#username-span {
+    width: 50vw;
+    text-align: left;
+    color: #eee;
+    margin-left: 5px;
+    background-color: #222;
+    padding: 6px 11px;
+    cursor: pointer;
+    white-space: pre;
+}
+
+#change-box {
+    width:200px;
+    margin: 10px auto;
+}
+#change-username {
+    font-size: 80%;
+    color: #6191dd;
+    cursor: pointer;
+    margin: 4px;
+    padding: 5px 7px;
+    background-color: #3d3d3d;
+}
+#change-color {
+    font-size: 80%;
+    color: #6191dd;
+    cursor: pointer;
+    margin: 4px;
+    padding: 5px 7px;
+    background-color: #3d3d3d;
+}
+.room-button {
+    width: 114px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    margin: 17px auto;
+    cursor: pointer;
+}
+#default-rooms-area {
+    width: 148px;
+    margin: 10px auto;
+    border: 2px dashed #cd4433;
+}
+#input-room {
+    font-size: 15px;
+    width: 100px;
+    height: 34px;
+    margin: 10px auto;
+    text-align: center;
+    text-transform: lowercase;
+    background-color: transparent;
+    border:2px dashed #cd4442;
+    color:#6191dd
+}
+.room-title {
+    padding: 5px;
+    text-transform: uppercase;
+}
+#main-room {
+    width:82vw;
+    height: 35vh;
+    min-width: 180px;
+    min-height: 120px;
+    left:5vw;
+    padding: 1px;
+    z-index: 9000;
+}
+#main-text {
+    background-color: #f5f5f5;
+    height: calc(100% - 57px);
+    overflow-y: auto;
+    padding: 5px;
+    background-color: rgba(255,255,255,0.9);
+}
+#main-input {
+    position:absolute;
+    bottom:1px;
+    left: 1px;
+    width: calc(100% - 2px);
+}
+.status-update {
+    color:#6191dd;
+    font-size: 85%;
+}
+
+.user-box {
+    background-color: #aaa;
+    width: 40vw;
+    height: 26vh;
+    padding: 5px;
+    margin: 5px;
+    box-shadow: inset 0 0 4px #000000;
+    -moz-box-shadow: inset 0 0 4px #000000;
+    -webkit-box-shadow: inset 0 0 4px #000000;
+    border-width: 3px;
+    min-width:160px;
+    min-height: 100px;
+    position: absolute !important;
+}
+.user-name-div {
+
+}
+.text-div {
+    height: calc(100% - 54px);
+    padding: 7px;
+    margin: 3px 0;
+    overflow-y: auto;
+    background-color: rgba(255,255,255,0.1);
+}
+.input-box {
+    position:absolute;
+    bottom:4px;
+    width:calc(100% - 10px)
+}
+.resizer {
+    width: 8px;
+    height: 8px;
+    border-radius: 10px;
+    background-color: #666;
+    position: absolute;
+    right: -5px;
+    bottom: -5px;
+    border: 2px solid #555;
+    cursor: cell;
+}
+
+.color {
+    color: #cd4442
+}
+.color2 {
+    color: #6191dd
+}
