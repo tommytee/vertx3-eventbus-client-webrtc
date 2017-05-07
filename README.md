@@ -50,5 +50,7 @@ then from happyChat dir run ( default port 8090 )
 
 atm you can add #nowebrtc to url to disable WebRTC in browser
 
-##Vert.x
+## Vert.x
 requires java 8
+
+demo chat app http://vrview.io:8090/
