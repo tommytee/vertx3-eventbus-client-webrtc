@@ -13,6 +13,7 @@
   },
   "scripts": {
     "start": "./node_modules/.bin/vertx run server.js",
+    "latest": "cp ../../../vertx3-eventbus-webrtc-helper/index.js node_modules/vertx3-eventbus-webrtc-helper/index.js; ./node_modules/.bin/vertx run server.js",
     "watch": "watchify src/main.js -v -o webroot/bundle.js",
     "build": "browserify src/main.js -o webroot/bundle.js"
   }

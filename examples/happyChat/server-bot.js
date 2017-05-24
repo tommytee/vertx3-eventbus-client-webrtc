@@ -1,11 +1,11 @@
 
-var eb, asciiLogo = ' ‹(•_•)› ';
+var eb, logger = Java.type("io.vertx.core.logging.LoggerFactory").getLogger('vertx3-eventbus-webrtc-helper');
 var userMenu = 'Available commands for me or users:<br>-wantReply <br>-manyReplies <br>-publish2room ';
 var userColors = {
   light:'#ddddff',
   dark:'#444400'
 }
-
+logger.info =  function () {}
 module.exports = function ( ebus ) {
 
   eb = ebus;
@@ -14,15 +14,14 @@ module.exports = function ( ebus ) {
 
     if ( error ) {
 
-      console.log(asciiLogo + 'error on serverBot consumer');
-
-      tryLog(error, 'error');
+      logger.error('error on serverBot consumer');
+      logger.error( error );
 
     } else {
 
       var mes = message.body();
 
-      console.log( asciiLogo + 'message received by serverBot ', JSON.stringify( mes ));
+      logger.info( 'message received by serverBot ', JSON.stringify( mes ));
 
       if ( mes.enter ) {
 
@@ -63,7 +62,7 @@ function sendNewUserGreeting ( message, delay ) {
 
   var mes = message.body();
 
-  console.log( asciiLogo + 'new user in room ' + mes.roomName + ' user: ' + mes.userId );
+  logger.info( 'new user in room ' + mes.roomName + ' user: ' + mes.userId );
 
   setTimeout(function () {
 
@@ -80,7 +79,7 @@ function sendNewUserGreeting ( message, delay ) {
   setTimeout(function () {
 
     eb.send( 'chat.room.user.' + mes.userId, {
-      message:'Hi. I am serverBot. '+ asciiLogo + userMenu,
+      message:'Hi. I am serverBot. '+ userMenu,
       userId: 'serverBot',
       userColors:userColors,
       username: 'serverBot'
@@ -94,10 +93,10 @@ function giveGreeting ( message ) {
 
   var mes = message.body();
 
-  console.log(asciiLogo + 'giveGreeting');
+  logger.info('giveGreeting');
 
   eb.send( 'chat.room.user.'+ mes.userId, {
-    message: asciiLogo + userMenu,
+    message: userMenu,
     userId: 'serverBot',
     userColors:userColors,
     username: 'serverBot'
@@ -106,17 +105,17 @@ function giveGreeting ( message ) {
 
 function wantReply( message ) {
 
-  console.log(asciiLogo + 'wantReply request from ' + message.body().userId );
+  logger.info('wantReply request from ' + message.body().userId );
 
   if ( message.replyAddress() ) {
 
     message.reply('Thanks for checking in with serverBot');
 
-    console.log(asciiLogo + 'reply sent');
+    logger.info('reply sent');
 
   } else {
 
-    console.log(asciiLogo + 'asked to reply but no reply function in message');
+    logger.info('asked to reply but no reply function in message');
   }
 
 }
@@ -125,7 +124,7 @@ function publish2room ( message, delay ) {
 
   var mes = message.body();
 
-  console.log(asciiLogo + 'publish2room request from ' + mes.userId );
+  logger.info('publish2room request from ' + mes.userId );
 
   setTimeout(function () {
 
@@ -141,14 +140,14 @@ function publish2room ( message, delay ) {
 
 function manyReplies ( message, delay ) {
 
-  console.log( 'manyReplies' );
+  logger.info( 'manyReplies' );
 
   var mes = message.body();
 
   setTimeout(function () {
 
-    console.log( asciiLogo + '' + JSON.stringify(mes) );
-    console.log( asciiLogo + 'sending test message to user ' + mes.userId );
+    logger.info( '' + JSON.stringify(mes) );
+    logger.info( 'sending test message to user ' + mes.userId );
 
     eb.send( 'chat.room.user.' + mes.userId, {
       message: 'Test message from serverBot, please respond',
@@ -159,48 +158,46 @@ function manyReplies ( message, delay ) {
 
       if ( error2 ) {
 
-        console.log(asciiLogo + 'error on serverBot reply handler');
-
-        tryLog( error2, 'error');
+        logger.error('error on serverBot reply handler');
+        logger.error( error2 );
 
       } else {
 
         var mes =  message2.body();
 
-        console.log( asciiLogo + 'serverBot received a reply ', JSON.stringify( mes ));
-        console.log( asciiLogo + 'serverBot replying to reply');
+        logger.info( 'serverBot received a reply ', JSON.stringify( mes ));
+        logger.info( 'serverBot replying to reply');
 
 
         message2.reply('good. please reply again', function ( msg, rep_err ) {
 
           if ( rep_err ) {
 
-            console.log(asciiLogo + 'error on serverBot reply reply handler');
-
-            tryLog( rep_err, 'error');
+            logger.error('error on serverBot reply reply handler');
+            logger.error( rep_err );
 
           } else {
 
             var mes =  msg.body();
 
-            console.log( asciiLogo + 'serverBot received reply to a reply', JSON.stringify( mes ));
+            logger.info( 'serverBot received reply to a reply', JSON.stringify( mes ));
 
 
             msg.reply('good. please reply again', function ( msg, rep_err ) {
 
               if ( rep_err ) {
 
-                console.log(
-                  asciiLogo + 'error on serverBot reply reply handler' );
+                logger.error(
+                  'error on serverBot reply reply handler' );
 
-                tryLog( rep_err, 'error' );
+                logger.error( rep_err );
 
               } else {
 
                 var mes = msg.body();
 
-                console.log(
-                  asciiLogo + 'serverBot received reply to a reply',
+                logger.info(
+                  'serverBot received reply to a reply',
                   JSON.stringify( mes ) );
 
 
@@ -208,17 +205,17 @@ function manyReplies ( message, delay ) {
 
                   if ( rep_err ) {
 
-                    console.log(
-                      asciiLogo + 'error on serverBot reply reply handler' );
+                    logger.error(
+                      'error on serverBot reply reply handler' );
 
-                    tryLog( rep_err, 'error' );
+                    logger.error( rep_err );
 
                   } else {
 
                     var mes = msg.body();
 
-                    console.log(
-                      asciiLogo + 'serverBot received reply to a reply',
+                    logger.info(
+                      'serverBot received reply to a reply',
                       JSON.stringify( mes ) );
 
 
@@ -226,37 +223,36 @@ function manyReplies ( message, delay ) {
 
                       if ( rep_err ) {
 
-                        console.log(
-                          asciiLogo + 'error on serverBot reply reply handler' );
+                        logger.error(
+                          'error on serverBot reply reply handler' );
 
-                        tryLog( rep_err, 'error' );
+                        logger.error( rep_err );
 
                       } else {
 
                         var mes = msg.body();
 
-                        console.log(
-                          asciiLogo + 'serverBot received reply to a reply',
+                        logger.info(
+                          'serverBot received reply to a reply',
                           JSON.stringify( mes ) );
 
                         msg.reply('good. thank you.', function ( msg, rep_err ) {
 
                           if ( rep_err ) {
 
-                            console.log(
-                              asciiLogo + 'error on serverBot reply reply handler' );
-
-                            tryLog( rep_err, 'error' );
+                            logger.error(
+                              'error on serverBot reply reply handler' );
+                            logger.error( rep_err );
 
                           } else {
 
                             var mes = msg.body();
 
-                            console.log(
-                              asciiLogo + 'serverBot received a final reply to a reply',
+                            logger.info(
+                              'serverBot received a final reply to a reply',
                               JSON.stringify( mes ) );
-                            console.log(
-                              asciiLogo + 'test complete ' );
+                            logger.info(
+                              'test complete ' );
 
                           }
                         })
@@ -280,59 +276,5 @@ function manyReplies ( message, delay ) {
     } );
 
   }, delay);
-
-}
-
-function tryLog( thing, name ) {
-
-  console.log(
-    asciiLogo + '\n-------------------------< Try Log begin for: ' +
-    name );
-
-  doIt( thing );
-  doIt( thing, 'body' );
-  doIt( thing, 'message' );
-
-  function doIt ( it, subIt ) {
-
-    if ( subIt ) {
-
-      try {
-        console.log( JSON.stringify( it[ subIt ] ) );
-      }
-      catch ( err ) {
-
-        console.log( asciiLogo + 'ERROR on ' + subIt );
-      }
-
-      try {
-        console.log( JSON.stringify( it() ) );
-      }
-      catch ( err ) {
-
-        console.log( asciiLogo + 'ERROR on ' + subIt + '()' );
-      }
-
-    } else {
-
-      try {
-        console.log( JSON.stringify( it ) );
-      }
-      catch ( err ) {
-
-        console.log( asciiLogo + 'ERROR on ' );
-      }
-
-      try {
-        console.log( JSON.stringify( it() ) );
-      }
-      catch ( err ) {
-
-        console.log( asciiLogo + 'ERROR on () ' );
-      }
-    }
-  }
-
-  console.log( asciiLogo + '-------------------------< Try Log end\n' );
 
 }

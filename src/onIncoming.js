@@ -34,6 +34,8 @@ module.exports =  function ( messageObject ) {
       } else {
 
         handlers[ i ]( null, messageObject );
+
+        console.log( messageObject );
       }
     }
 

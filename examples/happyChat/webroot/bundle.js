@@ -4407,7 +4407,7 @@ happyChat.zOrder = function ( element ) {
 
 happyChat.init();
 
-},{"../../../src/main":40,"./client-bot":13,"./makeUser":15,"./manyReplies":16,"./randomName":17,"./sendBotMessage":18,"draggabilly":4}],15:[function(require,module,exports){
+},{"../../../src/main":41,"./client-bot":13,"./makeUser":15,"./manyReplies":16,"./randomName":17,"./sendBotMessage":18,"draggabilly":4}],15:[function(require,module,exports){
 
 module.exports = function makeUser ( body ) {
 
@@ -5159,14 +5159,14 @@ function useColors() {
 
   // is webkit? http://stackoverflow.com/a/16459606/376773
   // document is undefined in react-native: https://github.com/facebook/react-native/pull/1632
-  return (typeof document !== 'undefined' && document && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance) ||
+  return (typeof document !== 'undefined' && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance) ||
     // is firebug? http://stackoverflow.com/a/398120/376773
-    (typeof window !== 'undefined' && window && window.console && (window.console.firebug || (window.console.exception && window.console.table))) ||
+    (typeof window !== 'undefined' && window.console && (window.console.firebug || (window.console.exception && window.console.table))) ||
     // is firefox >= v31?
     // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
-    (typeof navigator !== 'undefined' && navigator && navigator.userAgent && navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31) ||
+    (typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31) ||
     // double check webkit in userAgent just in case we are in a worker
-    (typeof navigator !== 'undefined' && navigator && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/));
+    (typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/));
 }
 
 /**
@@ -5556,11 +5556,11 @@ module.exports = Array.isArray || function (arr) {
  * Helpers.
  */
 
-var s = 1000
-var m = s * 60
-var h = m * 60
-var d = h * 24
-var y = d * 365.25
+var s = 1000;
+var m = s * 60;
+var h = m * 60;
+var d = h * 24;
+var y = d * 365.25;
 
 /**
  * Parse or format the given `val`.
@@ -5576,18 +5576,19 @@ var y = d * 365.25
  * @api public
  */
 
-module.exports = function (val, options) {
-  options = options || {}
-  var type = typeof val
+module.exports = function(val, options) {
+  options = options || {};
+  var type = typeof val;
   if (type === 'string' && val.length > 0) {
-    return parse(val)
+    return parse(val);
   } else if (type === 'number' && isNaN(val) === false) {
-    return options.long ?
-			fmtLong(val) :
-			fmtShort(val)
+    return options.long ? fmtLong(val) : fmtShort(val);
   }
-  throw new Error('val is not a non-empty string or a valid number. val=' + JSON.stringify(val))
-}
+  throw new Error(
+    'val is not a non-empty string or a valid number. val=' +
+      JSON.stringify(val)
+  );
+};
 
 /**
  * Parse the given `str` and return milliseconds.
@@ -5598,53 +5599,55 @@ module.exports = function (val, options) {
  */
 
 function parse(str) {
-  str = String(str)
-  if (str.length > 10000) {
-    return
+  str = String(str);
+  if (str.length > 100) {
+    return;
   }
-  var match = /^((?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|years?|yrs?|y)?$/i.exec(str)
+  var match = /^((?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|years?|yrs?|y)?$/i.exec(
+    str
+  );
   if (!match) {
-    return
+    return;
   }
-  var n = parseFloat(match[1])
-  var type = (match[2] || 'ms').toLowerCase()
+  var n = parseFloat(match[1]);
+  var type = (match[2] || 'ms').toLowerCase();
   switch (type) {
     case 'years':
     case 'year':
     case 'yrs':
     case 'yr':
     case 'y':
-      return n * y
+      return n * y;
     case 'days':
     case 'day':
     case 'd':
-      return n * d
+      return n * d;
     case 'hours':
     case 'hour':
     case 'hrs':
     case 'hr':
     case 'h':
-      return n * h
+      return n * h;
     case 'minutes':
     case 'minute':
     case 'mins':
     case 'min':
     case 'm':
-      return n * m
+      return n * m;
     case 'seconds':
     case 'second':
     case 'secs':
     case 'sec':
     case 's':
-      return n * s
+      return n * s;
     case 'milliseconds':
     case 'millisecond':
     case 'msecs':
     case 'msec':
     case 'ms':
-      return n
+      return n;
     default:
-      return undefined
+      return undefined;
   }
 }
 
@@ -5658,18 +5661,18 @@ function parse(str) {
 
 function fmtShort(ms) {
   if (ms >= d) {
-    return Math.round(ms / d) + 'd'
+    return Math.round(ms / d) + 'd';
   }
   if (ms >= h) {
-    return Math.round(ms / h) + 'h'
+    return Math.round(ms / h) + 'h';
   }
   if (ms >= m) {
-    return Math.round(ms / m) + 'm'
+    return Math.round(ms / m) + 'm';
   }
   if (ms >= s) {
-    return Math.round(ms / s) + 's'
+    return Math.round(ms / s) + 's';
   }
-  return ms + 'ms'
+  return ms + 'ms';
 }
 
 /**
@@ -5685,7 +5688,7 @@ function fmtLong(ms) {
     plural(ms, h, 'hour') ||
     plural(ms, m, 'minute') ||
     plural(ms, s, 'second') ||
-    ms + ' ms'
+    ms + ' ms';
 }
 
 /**
@@ -5694,12 +5697,12 @@ function fmtLong(ms) {
 
 function plural(ms, n, name) {
   if (ms < n) {
-    return
+    return;
   }
   if (ms < n * 1.5) {
-    return Math.floor(ms / n) + ' ' + name
+    return Math.floor(ms / n) + ' ' + name;
   }
-  return Math.ceil(ms / n) + ' ' + name + 's'
+  return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
 },{}],27:[function(require,module,exports){
@@ -6830,7 +6833,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this,require('_process'))
-},{"./_stream_duplex":29,"./internal/streams/BufferList":34,"./internal/streams/stream":35,"_process":10,"buffer":3,"buffer-shims":19,"core-util-is":20,"events":6,"inherits":24,"isarray":25,"process-nextick-args":27,"string_decoder/":38,"util":2}],32:[function(require,module,exports){
+},{"./_stream_duplex":29,"./internal/streams/BufferList":34,"./internal/streams/stream":35,"_process":10,"buffer":3,"buffer-shims":19,"core-util-is":20,"events":6,"inherits":24,"isarray":25,"process-nextick-args":27,"string_decoder/":39,"util":2}],32:[function(require,module,exports){
 // a transform stream is a readable/writable stream where you do
 // something with the data.  Sometimes it's called a "filter",
 // but that's not a great name for it, since that implies a thing where
@@ -7560,7 +7563,7 @@ function CorkedRequest(state) {
   };
 }
 }).call(this,require('_process'))
-},{"./_stream_duplex":29,"./internal/streams/stream":35,"_process":10,"buffer":3,"buffer-shims":19,"core-util-is":20,"inherits":24,"process-nextick-args":27,"util-deprecate":39}],34:[function(require,module,exports){
+},{"./_stream_duplex":29,"./internal/streams/stream":35,"_process":10,"buffer":3,"buffer-shims":19,"core-util-is":20,"inherits":24,"process-nextick-args":27,"util-deprecate":40}],34:[function(require,module,exports){
 'use strict';
 
 var Buffer = require('buffer').Buffer;
@@ -7638,6 +7641,9 @@ exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
 },{"./lib/_stream_duplex.js":29,"./lib/_stream_passthrough.js":30,"./lib/_stream_readable.js":31,"./lib/_stream_transform.js":32,"./lib/_stream_writable.js":33}],37:[function(require,module,exports){
+module.exports = require('buffer')
+
+},{"buffer":3}],38:[function(require,module,exports){
 (function (Buffer){
 module.exports = Peer
 
@@ -8432,11 +8438,10 @@ Peer.prototype._transformConstraints = function (constraints) {
 function noop () {}
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":3,"debug":21,"get-browser-rtc":23,"inherits":24,"randombytes":28,"readable-stream":36}],38:[function(require,module,exports){
+},{"buffer":3,"debug":21,"get-browser-rtc":23,"inherits":24,"randombytes":28,"readable-stream":36}],39:[function(require,module,exports){
 'use strict';
 
-var Buffer = require('buffer').Buffer;
-var bufferShim = require('buffer-shims');
+var Buffer = require('safe-buffer').Buffer;
 
 var isEncoding = Buffer.isEncoding || function (encoding) {
   encoding = '' + encoding;
@@ -8513,7 +8518,7 @@ function StringDecoder(encoding) {
   }
   this.lastNeed = 0;
   this.lastTotal = 0;
-  this.lastChar = bufferShim.allocUnsafe(nb);
+  this.lastChar = Buffer.allocUnsafe(nb);
 }
 
 StringDecoder.prototype.write = function (buf) {
@@ -8706,7 +8711,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"buffer":3,"buffer-shims":19}],39:[function(require,module,exports){
+},{"safe-buffer":37}],40:[function(require,module,exports){
 (function (global){
 
 /**
@@ -8777,7 +8782,7 @@ function config (name) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],40:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 /* expects sockjs to be loaded */
 
 module.exports = (function () {
@@ -8897,7 +8902,7 @@ module.exports = (function () {
   return EventBus
 
 })()
-},{"./mergeHeaders":41,"./onIncoming":42,"./onMessage":43,"./onOffer":44,"./onOfferRequest":45,"./onStatus":46,"./pingEnabled":47,"./publish":48,"./registerHandler":49,"./registerStatusHandler":50,"./removePeer":51,"./send":52,"./setupPeerEvents":53,"./unregisterHandler":54,"./unregisterStatusHandler":55}],41:[function(require,module,exports){
+},{"./mergeHeaders":42,"./onIncoming":43,"./onMessage":44,"./onOffer":45,"./onOfferRequest":46,"./onStatus":47,"./pingEnabled":48,"./publish":49,"./registerHandler":50,"./registerStatusHandler":51,"./removePeer":52,"./send":53,"./setupPeerEvents":54,"./unregisterHandler":55,"./unregisterStatusHandler":56}],42:[function(require,module,exports){
 module.exports = function( defaultHeaders, headers ) {
 
   if ( defaultHeaders ) {
@@ -8923,7 +8928,7 @@ module.exports = function( defaultHeaders, headers ) {
   return headers || {};
 }
 
-},{}],42:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 
 module.exports =  function ( messageObject ) {
 
@@ -8960,6 +8965,8 @@ module.exports =  function ( messageObject ) {
       } else {
 
         handlers[ i ]( null, messageObject );
+
+        console.log( messageObject );
       }
     }
 
@@ -8985,15 +8992,13 @@ module.exports =  function ( messageObject ) {
 
   }
 }
-},{}],43:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 
 module.exports = function ( e ) {
 
   var self = this;
 
   var json = JSON.parse( e.data );
-
-  //console.log('\non message\n', json)
 
   if ( json.headers && json.headers.peerId )
     peerCheck( json.headers.peerId );
@@ -9116,7 +9121,7 @@ module.exports = function ( e ) {
 }
 
 
-},{}],44:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 var Peer = require('simple-peer')
 
 module.exports = function ( data ) {
@@ -9161,7 +9166,7 @@ module.exports = function ( data ) {
   }
 
 }
-},{"simple-peer":37}],45:[function(require,module,exports){
+},{"simple-peer":38}],46:[function(require,module,exports){
 
 var Peer = require('simple-peer')
 
@@ -9233,9 +9238,11 @@ module.exports = function ( data ) {
 
 }
 
-},{"simple-peer":37}],46:[function(require,module,exports){
+},{"simple-peer":38}],47:[function(require,module,exports){
 
 module.exports = function ( data ) {
+
+  console.log( data );
 
   if ( data.status.listenerRemoved ) {
 
@@ -9265,7 +9272,7 @@ module.exports = function ( data ) {
   }
 
 }
-},{}],47:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 module.exports = function ( enable ) {
 
   var self = this;
@@ -9299,7 +9306,7 @@ module.exports = function ( enable ) {
 
   }
 };
-},{}],48:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 /**
  * Publish a message
  *
@@ -9344,7 +9351,7 @@ module.exports = function ( address, message, headers ) {
   } ) );
 
 };
-},{}],49:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 
 /**
  * Register a new handler
@@ -9392,7 +9399,7 @@ module.exports = function ( address, headers, callback ) {
 
   this.sendPeersRegisterUpdate();
 };
-},{}],50:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 /**
  *
  * @param address
@@ -9438,7 +9445,7 @@ module.exports = function ( address, headers, callback ) {
   this.statusHandlers[ address ].push( callback );
 
 }
-},{}],51:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 
 module.exports = function ( peer ) {
 
@@ -9464,7 +9471,7 @@ module.exports = function ( peer ) {
   delete self.peers[ peer.id ];
 
 }
-},{}],52:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 /**
  * Send a message
  *
@@ -9568,7 +9575,7 @@ module.exports = function ( address, message, headers, callback ) {
 
 };
 
-},{}],53:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 
 module.exports = function( peer ) {
 
@@ -9627,15 +9634,14 @@ module.exports = function( peer ) {
 
   } )
   peer.on( 'stream', function ( stream ) {
-    //self.emit('stream', stream)
+    console.log( 'stream' );
   } )
   peer.on( 'error', function ( err ) {
-    //emitfn.call( this, 'peer-error', err )
     console.log( 'Error in peer %s', err );
   } )
 
 }
-},{}],54:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 
 /**
  * Unregister a handler
@@ -9684,7 +9690,7 @@ module.exports = function ( address, headers, callback ) {
   }
 };
 
-},{}],55:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 /**
  *
  * @param address

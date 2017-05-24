@@ -1,6 +1,8 @@
 
 module.exports = function ( data ) {
 
+  console.log( data );
+
   if ( data.status.listenerRemoved ) {
 
     //console.log('onStatus peer left',data);

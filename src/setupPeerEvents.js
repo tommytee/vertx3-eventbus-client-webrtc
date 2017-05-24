@@ -56,10 +56,9 @@ module.exports = function( peer ) {
 
   } )
   peer.on( 'stream', function ( stream ) {
-    //self.emit('stream', stream)
+    console.log( 'stream' );
   } )
   peer.on( 'error', function ( err ) {
-    //emitfn.call( this, 'peer-error', err )
     console.log( 'Error in peer %s', err );
   } )
 

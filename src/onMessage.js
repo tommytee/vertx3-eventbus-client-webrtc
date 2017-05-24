@@ -5,8 +5,6 @@ module.exports = function ( e ) {
 
   var json = JSON.parse( e.data );
 
-  //console.log('\non message\n', json)
-
   if ( json.headers && json.headers.peerId )
     peerCheck( json.headers.peerId );
 
