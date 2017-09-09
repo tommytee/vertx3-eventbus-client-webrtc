@@ -52,5 +52,3 @@ atm you can add #nowebrtc to url to disable WebRTC in browser
 
 ## Vert.x
 requires java 8
-
-demo chat app http://vrview.io:8090/
